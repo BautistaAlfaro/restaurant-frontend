@@ -1,4 +1,4 @@
-/* Variables CSS */
+/* Variables CSS - Mantener para compatibilidad con otros componentes por ahora */
 :root {
   --primary-color: #8b4513;
   --secondary-color: #a0522d;
@@ -12,23 +12,24 @@
 }
 
 .home-page {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
   color: var(--text-color);
 }
 
+/* Container se maneja con estilos globales o Tailwind */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
+/* Estilos para secciones no migradas aun */
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
   margin-bottom: 1rem;
   color: var(--dark-color);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .section-subtitle {
@@ -41,223 +42,8 @@
   margin-right: auto;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
+/* El Hero Section ahora usa clases de utilidades Tailwind en el HTML */
 
-/* Hero Section Innovador */
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.floating-shapes {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.floating-shape {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  animation: float 8s ease-in-out infinite;
-}
-
-.shape-1 {
-  width: 100px;
-  height: 100px;
-  top: 10%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.shape-2 {
-  width: 150px;
-  height: 150px;
-  top: 20%;
-  right: 15%;
-  animation-delay: 2s;
-}
-
-.shape-3 {
-  width: 80px;
-  height: 80px;
-  bottom: 30%;
-  left: 20%;
-  animation-delay: 4s;
-}
-
-.shape-4 {
-  width: 120px;
-  height: 120px;
-  top: 60%;
-  right: 25%;
-  animation-delay: 1s;
-}
-
-.shape-5 {
-  width: 60px;
-  height: 60px;
-  bottom: 20%;
-  right: 10%;
-  animation-delay: 3s;
-}
-
-.shape-6 {
-  width: 90px;
-  height: 90px;
-  top: 40%;
-  left: 5%;
-  animation-delay: 5s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  33% {
-    transform: translateY(-20px) rotate(120deg);
-  }
-  66% {
-    transform: translateY(10px) rotate(240deg);
-  }
-}
-
-.gradient-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(139, 69, 19, 0.8), rgba(160, 82, 45, 0.6));
-  z-index: 2;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-.hero-text {
-  color: white;
-}
-
-.hero-title {
-  font-size: 4rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  line-height: 1.1;
-}
-
-.title-line {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.highlight {
-  background: linear-gradient(45deg, #f39c12, #e67e22);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  font-size: 1.3rem;
-  margin-bottom: 3rem;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-}
-
-.hero-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: var(--transition);
-  border: 2px solid transparent;
-}
-
-.hero-button.primary {
-  background: black;
-  color: var(--primary-color);
-}
-
-.hero-button.secondary {
-  background: transparent;
-  color: white;
-  border-color: white;
-}
-
-.hero-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.stat-item {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  border-radius: var(--border-radius);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: center;
-  color: white;
-}
-
-.stat-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: #f39c12;
-}
-
-.stat-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
 
 /* Sección de Servicios */
 .services-section {
@@ -793,6 +579,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -819,55 +606,70 @@
   --tw-gradient-from: #3b82f6;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0));
 }
+
 .to-blue-600 {
   --tw-gradient-to: #2563eb;
 }
+
 .from-green-500 {
   --tw-gradient-from: #10b981;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(16, 185, 129, 0));
 }
+
 .to-green-600 {
   --tw-gradient-to: #059669;
 }
+
 .from-purple-500 {
   --tw-gradient-from: #8b5cf6;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(139, 92, 246, 0));
 }
+
 .to-purple-600 {
   --tw-gradient-to: #7c3aed;
 }
+
 .from-orange-500 {
   --tw-gradient-from: #f97316;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(249, 115, 22, 0));
 }
+
 .to-orange-600 {
   --tw-gradient-to: #ea580c;
 }
+
 .from-amber-500 {
   --tw-gradient-from: #f59e0b;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(245, 158, 11, 0));
 }
+
 .to-amber-600 {
   --tw-gradient-to: #d97706;
 }
+
 .from-red-500 {
   --tw-gradient-from: #ef4444;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 68, 68, 0));
 }
+
 .to-red-600 {
   --tw-gradient-to: #dc2626;
 }
+
 .from-pink-500 {
   --tw-gradient-from: #ec4899;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(236, 72, 153, 0));
 }
+
 .to-pink-600 {
   --tw-gradient-to: #db2777;
 }
+
 .from-indigo-500 {
   --tw-gradient-from: #6366f1;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(99, 102, 241, 0));
 }
+
 .to-indigo-600 {
   --tw-gradient-to: #4f46e5;
 }

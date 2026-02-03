@@ -1,10 +1,139 @@
-<div class="lista-reservas">
-  <h2>Lista de Reservas</h2>
-  <ul>
-    <li *ngFor="let reserva of reservas">
-      <strong>{{ reserva.nombre }}</strong> -
-      {{ reserva.fecha }} a las {{ reserva.hora }} -
-      {{ reserva.user }} user
-    </li>
-  </ul>
+<div class="min-h-screen bg-gradient-to-b from-primary to-neutral-900 flex flex-col">
+  <app-navbar></app-navbar>
+
+  <div class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Mis Reservas</h1>
+          <p class="text-gray-400">Administra tus próximas visitas y consulta tu historial</p>
+        </div>
+        <button routerLink="/reserva"
+          class="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-primary font-bold py-3 px-6 rounded-xl transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40 active:scale-95">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Nueva Reserva
+        </button>
+      </div>
+
+      <!-- Reservations List -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+
+        <!-- Desktop Table -->
+        <div class="hidden md:block overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-white/10 bg-white/5">
+                <th class="py-5 px-6 text-sm font-semibold text-accent uppercase tracking-wider">Fecha</th>
+                <th class="py-5 px-6 text-sm font-semibold text-accent uppercase tracking-wider">Hora</th>
+                <th class="py-5 px-6 text-sm font-semibold text-accent uppercase tracking-wider">Personas</th>
+                <th class="py-5 px-6 text-sm font-semibold text-accent uppercase tracking-wider">Estado</th>
+                <th class="py-5 px-6 text-sm font-semibold text-accent uppercase tracking-wider text-right">Acciones
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              <tr *ngFor="let reserva of reservas" class="hover:bg-white/5 transition-colors group">
+                <td class="py-5 px-6 text-white font-medium">
+                  {{ reserva.fecha | date:'fullDate' }}
+                </td>
+                <td class="py-5 px-6 text-gray-300">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-accent/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    {{ reserva.hora }}
+                  </div>
+                </td>
+                <td class="py-5 px-6 text-gray-300">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-accent/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                      </path>
+                    </svg>
+                    {{ reserva.people || reserva.personas || 2 }} Personas
+                  </div>
+                </td>
+                <td class="py-5 px-6">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold" [ngClass]="{
+                          'bg-green-500/20 text-green-400 border border-green-500/30': reserva.state === 'Confirmed' || reserva.status === 'Confirmed',
+                          'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30': reserva.state === 'Pending' || reserva.status === 'Pending',
+                          'bg-red-500/20 text-red-400 border border-red-500/30': reserva.state === 'Cancelled' || reserva.status === 'Cancelled'
+                        }">
+                    {{ reserva.state || reserva.status || 'Pendiente' }}
+                  </span>
+                </td>
+                <td class="py-5 px-6 text-right">
+                  <button *ngIf="(reserva.state !== 'Cancelled' && reserva.status !== 'Cancelled')"
+                    class="text-gray-400 hover:text-red-400 transition-colors p-2 hover:bg-white/5 rounded-lg"
+                    title="Cancelar Reserva">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="reservas.length === 0">
+                <td colspan="5" class="py-12 text-center text-gray-500">
+                  <div class="flex flex-col items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center">
+                      <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                      </svg>
+                    </div>
+                    <p>No tienes reservas activas por el momento.</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile Cards -->
+        <div class="md:hidden p-4 space-y-4">
+          <div *ngFor="let reserva of reservas" class="bg-white/5 border border-white/10 rounded-xl p-5 space-y-4">
+            <div class="flex justify-between items-start">
+              <div>
+                <p class="text-white font-bold text-lg">{{ reserva.fecha | date:'mediumDate' }}</p>
+                <p class="text-accent">{{ reserva.hora }}</p>
+              </div>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold" [ngClass]="{
+                      'bg-green-500/20 text-green-400': reserva.state === 'Confirmed',
+                      'bg-yellow-500/20 text-yellow-400': reserva.state === 'Pending',
+                      'bg-red-500/20 text-red-400': reserva.state === 'Cancelled'
+                    }">
+                {{ reserva.state || 'Pendiente' }}
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between text-sm text-gray-400 pt-4 border-t border-white/10">
+              <span class="flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                  </path>
+                </svg>
+                {{ reserva.people || 2 }} Personas
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </div>

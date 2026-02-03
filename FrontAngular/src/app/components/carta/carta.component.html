@@ -1,52 +1,68 @@
-<div class="menu-page">
+<div class="min-h-screen bg-gradient-to-b from-primary to-neutral-900 pb-20">
   <app-navbar></app-navbar>
 
-  <!-- Hero Section -->
-  <section class="menu-hero">
-    <div class="hero-background">
-      <div class="floating-shapes">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
-      </div>
-      <div class="gradient-overlay"></div>
+  <!-- Hero Section Premium -->
+  <section class="relative pt-32 pb-20 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10"></div>
+      <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-accent/8 rounded-full blur-3xl animate-float"></div>
+      <div
+        class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-to-r from-accent/5 to-accent-light/5 rounded-full blur-3xl animate-float"
+        style="animation-delay: 2s;"></div>
     </div>
-    
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="title-line">Nuestra</span>
-        <span class="title-line highlight">Carta</span>
+
+    <div class="container relative z-10 mx-auto px-6 text-center">
+      <div class="mb-8">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="h-px bg-accent/30 w-20"></div>
+          <span class="text-accent text-sm font-medium tracking-widest uppercase">Menú Degustación</span>
+          <div class="h-px bg-accent/30 w-20"></div>
+        </div>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-down">
+        Nuestra <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">Carta</span>
       </h1>
-      <p class="hero-subtitle">
-        Descubre nuestra selección de platillos preparados con ingredientes frescos y de la mejor calidad
+      <p class="text-gray-300 text-xl max-w-3xl mx-auto mb-12 animate-fade-in-up leading-relaxed">
+        Descubre nuestra selección exquisita de platillos preparados con ingredientes premium
+        y la maestría culinaria que define a Étoile Restaurant
       </p>
-      
-      <!-- Buscador principal -->
-      <div class="search-container">
-        <div class="search-box">
-          <i class="fas fa-search search-icon"></i>
-          <input 
-            type="text" 
-            [(ngModel)]="searchTerm"
-            (input)="filterProducts()"
-            (focus)="toggleSearchSuggestions()"
-            placeholder="Busca tu platillo favorito..."
-            class="search-input"
-          >
-          <button *ngIf="searchTerm" (click)="clearSearch()" class="clear-button">
-            <i class="fas fa-times"></i>
+
+      <!-- Buscador Premium -->
+      <div class="max-w-2xl mx-auto relative group z-20">
+        <div
+          class="relative flex items-center bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl transition-all duration-300 focus-within:border-accent/50 focus-within:shadow-accent/20 focus-within:bg-white/10">
+          <svg class="w-5 h-5 text-gray-400 ml-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input type="text" [(ngModel)]="searchTerm" (input)="filterProducts()" (focus)="toggleSearchSuggestions()"
+            placeholder="Explora nuestro menú exclusivo..."
+            class="w-full bg-transparent border-none text-white px-4 py-5 focus:ring-0 placeholder-gray-500 outline-none text-lg">
+          <button *ngIf="searchTerm" (click)="clearSearch()"
+            class="mr-6 text-gray-400 hover:text-accent transition-all p-1 rounded-lg hover:bg-white/10">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
           </button>
         </div>
-        
-        <div class="search-suggestions" *ngIf="showSearchSuggestions">
-          <span class="suggestion-label">Búsquedas populares:</span>
-          <div class="suggestion-tags">
-            <button 
-              *ngFor="let suggestion of popularSearches" 
-              class="suggestion-tag"
-              (click)="applySearchSuggestion(suggestion)"
-            >
+
+        <!-- Search Suggestions Premium -->
+        <div
+          class="absolute top-full left-0 right-0 mt-4 bg-primary/95 backdrop-blur-xl border border-accent/20 rounded-2xl shadow-2xl p-6 opacity-0 invisible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform translate-y-2 group-focus-within:translate-y-0 z-30"
+          *ngIf="showSearchSuggestions">
+          <div class="flex items-center gap-2 mb-4">
+            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+              </path>
+            </svg>
+            <span class="text-xs font-bold text-accent uppercase tracking-wider">Tendencias del Momento</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button *ngFor="let suggestion of popularSearches"
+              class="px-4 py-2 bg-white/5 hover:bg-accent/20 hover:text-accent text-gray-300 rounded-xl text-sm transition-all duration-200 border border-white/10 hover:border-accent/30 hover:scale-105"
+              (click)="applySearchSuggestion(suggestion)">
               {{ suggestion }}
             </button>
           </div>
@@ -55,118 +71,222 @@
     </div>
   </section>
 
-  <div class="menu-content">
-    <div class="container">
-      <!-- Categorías -->
-      <div class="categories-section">
-        <div class="categories-scroll">
-          <button 
-            class="category-button" 
-            [class.active]="activeCategory === 'all'"
-            (click)="setActiveCategory('all')"
-          >
-            <div class="category-icon">
-              <i class="fas fa-th-large"></i>
-            </div>
-            <span>Todos</span>
-          </button>
-          
-          <button 
-            *ngFor="let category of categories" 
-            class="category-button" 
-            [class.active]="activeCategory === category"
-            [class]="getCategoryColor(category)"
-            (click)="setActiveCategory(category)"
-          >
-            <div class="category-icon">
-              <i class="fas fa-{{getCategoryIcon(category)}}"></i>
-            </div>
-            <span>{{ category }}</span>
-          </button>
-        </div>
-      </div>
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Categorías Premium -->
+    <div class="mb-16 overflow-x-auto pb-4 scrollbar-hide">
+      <div class="flex gap-3 md:justify-center min-w-max px-2">
+        <button
+          class="flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-300 whitespace-nowrap group backdrop-blur-sm"
+          [ngClass]="{
+            'bg-gradient-to-r from-accent to-accent-light text-primary border-accent shadow-lg': activeCategory === 'all',
+            'bg-white/5 text-gray-400 border-white/10 hover:border-accent hover:text-white hover:bg-white/10 hover:scale-105': activeCategory !== 'all'
+          }" (click)="setActiveCategory('all')">
+          <svg class="w-5 h-5" [class.text-primary]="activeCategory === 'all'"
+            [class.text-accent]="activeCategory !== 'all'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+            </path>
+          </svg>
+          <span class="font-semibold">Todos los Platos</span>
+        </button>
 
-      <!-- Mensaje de carga -->
-      <div *ngIf="isLoading" class="loading-container">
-        <div class="spinner"></div>
-        <p>Cargando deliciosos platillos...</p>
-      </div>
-
-      <!-- Mensaje de error -->
-      <div *ngIf="loadingError" class="error-container">
-        <div class="error-icon">
-          <i class="fas fa-exclamation-triangle"></i>
-        </div>
-        <h3>¡Ups! Algo salió mal</h3>
-        <p>No pudimos cargar el menú en este momento. Por favor, intenta nuevamente.</p>
-        <button (click)="loadProducts()" class="retry-button">
-          <i class="fas fa-redo"></i>
-          Reintentar
+        <button *ngFor="let category of categories"
+          class="flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-300 whitespace-nowrap group backdrop-blur-sm"
+          [ngClass]="{
+            'bg-gradient-to-r from-accent to-accent-light text-primary border-accent shadow-lg': activeCategory === category,
+            'bg-white/5 text-gray-400 border-white/10 hover:border-accent hover:text-white hover:bg-white/10 hover:scale-105': activeCategory !== category
+          }" (click)="setActiveCategory(category)">
+          <svg class="w-5 h-5" [class.text-primary]="activeCategory === category"
+            [class.text-accent]="activeCategory !== category" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="getCategoryPath(category)">
+            </path>
+          </svg>
+          <span class="font-semibold">{{ category }}</span>
         </button>
       </div>
+    </div>
 
-      <!-- Mensaje de no resultados -->
-      <div *ngIf="!isLoading && filteredProducts.length === 0" class="no-results">
-        <div class="no-results-icon">
-          <i class="fas fa-search"></i>
+    <!-- Mensajes Premium -->
+
+    <!-- Carga -->
+    <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-24">
+      <div class="relative">
+        <div
+          class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/20 flex items-center justify-center animate-spin">
+          <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+            </path>
+          </svg>
         </div>
-        <h3>No encontramos resultados</h3>
-        <p *ngIf="searchTerm">No hay platillos que coincidan con "{{ searchTerm }}"</p>
-        <button (click)="clearSearch()" class="clear-search-button">
-          <i class="fas fa-times-circle"></i>
-          Limpiar búsqueda
-        </button>
+        <div class="absolute inset-0 w-20 h-20 rounded-2xl border-2 border-accent/20 border-t-transparent animate-spin">
+        </div>
+      </div>
+      <p class="text-gray-400 mt-6 text-lg">Preparando delicias culinarias...</p>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="loadingError" class="flex flex-col items-center justify-center py-24 text-center">
+      <div class="w-20 h-20 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-6">
+        <svg class="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+          </path>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-white mb-3">Algo salió mal</h3>
+      <p class="text-gray-400 mb-8 max-w-md">No pudimos cargar nuestro menú exclusivo en este momento.</p>
+      <button (click)="loadProducts()"
+        class="px-8 py-3 bg-accent hover:bg-accent-light text-primary font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg shadow-accent/20">
+        <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+          </path>
+        </svg>
+        Reintentar
+      </button>
+    </div>
+
+    <!-- Sin resultados -->
+    <div *ngIf="!isLoading && filteredProducts.length === 0"
+      class="flex flex-col items-center justify-center py-24 text-center">
+      <div class="w-20 h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-white mb-3">No encontramos resultados</h3>
+      <p class="text-gray-400 mb-8" *ngIf="searchTerm">No hay platillos que coincidan con "{{ searchTerm }}"</p>
+      <button (click)="clearSearch()"
+        class="px-8 py-3 border border-white/20 hover:border-accent text-white hover:text-accent rounded-xl transition-all duration-200 hover:bg-white/5">
+        Limpiar búsqueda
+      </button>
+    </div>
+
+    <!-- Resultados Premium -->
+    <div *ngIf="!isLoading && filteredProducts.length > 0" class="space-y-8">
+      <!-- Header de resultados -->
+      <div class="flex justify-between items-end pb-6 border-b border-white/10">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <h2 class="text-3xl font-bold text-white">
+              <span *ngIf="activeCategory === 'all' && !searchTerm">Menú Completo</span>
+              <span *ngIf="activeCategory !== 'all' && !searchTerm">{{ activeCategory }}</span>
+              <span *ngIf="searchTerm"
+                class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">
+                "{{ searchTerm }}"
+              </span>
+            </h2>
+            <div class="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full font-semibold">
+              {{ filteredProducts.length }} platos
+            </div>
+          </div>
+          <p class="text-gray-400" *ngIf="!searchTerm">
+            <span *ngIf="activeCategory === 'all'">Nuestra selección completa de delicias culinarias</span>
+            <span *ngIf="activeCategory !== 'all'">Especialidades de {{ activeCategory.toLowerCase() }}</span>
+          </p>
+        </div>
+
+        <!-- Vista Toggle (opcional) -->
+        <div class="flex gap-2">
+          <button class="p-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+              </path>
+            </svg>
+          </button>
+          <button class="p-2 bg-accent/20 text-accent rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h18v18H3V3zm0 0l18 18M3 21l18-18"></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <!-- Resultados -->
-      <div *ngIf="!isLoading && filteredProducts.length > 0" class="results-section">
-        <div class="results-header">
-          <h2 *ngIf="activeCategory === 'all' && !searchTerm">Nuestro Menú Completo</h2>
-          <h2 *ngIf="activeCategory !== 'all' && !searchTerm">{{ activeCategory }}</h2>
-          <h2 *ngIf="searchTerm">Resultados para "{{ searchTerm }}"</h2>
-          <p class="results-count">{{ filteredProducts.length }} platillos encontrados</p>
-        </div>
-        
-        <!-- Grid de productos -->
-        <div class="products-grid">
-          <app-menu-item
-            *ngFor="let product of filteredProducts; let i = index"
-            [title]="product.name"
-            [imageUrl]="product.imageUrl"
-            [altText]="product.name"
-            [description]="product.description"
-            [price]="product.price"
-            [featured]="product.featured"
-            [productId]="product.id"
-            (verResenas)="VerResenas(product.id)"
-            [style.animation-delay]="getAnimationDelay(i)"
-            (itemClick)="openModal(product.name, product.imageUrl, product.id, product.price)"
-            (addToCart)="quickAddToCart(product.id, product.name, product.price)"
-          ></app-menu-item>
+      <!-- Grid de productos premium -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div *ngFor="let product of filteredProducts; let i = index" class="group relative animate-fade-in-up"
+          [style.animation-delay]="getAnimationDelay(i)"
+          (click)="openModal(product.name, product.imageUrl, product.id, product.price)">
+
+          <!-- Card Premium -->
+          <div
+            class="relative h-full bg-gradient-to-br from-white/[0.02] to-white/[0.05] border border-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:border-accent/20 hover:bg-white/10 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/20">
+
+            <!-- Badge Featured -->
+            <div *ngIf="product.featured"
+              class="absolute top-4 right-4 z-10 px-3 py-1 bg-gradient-to-r from-accent to-accent-light text-primary text-xs font-bold rounded-full shadow-lg">
+              Chef's Choice
+            </div>
+
+            <!-- Imagen -->
+            <div class="relative h-56 overflow-hidden">
+              <img [src]="product.imageUrl" [alt]="product.name"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+
+              <!-- Quick Actions Overlay -->
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-3">
+                <button (click)="quickAddToCart(product.id, product.name, product.price); $event.stopPropagation()"
+                  class="p-3 bg-accent/90 backdrop-blur-sm text-primary rounded-full hover:bg-accent transition-all hover:scale-110 shadow-lg">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
+                </button>
+                <button (click)="VerResenas(product.id); $event.stopPropagation()"
+                  class="p-3 bg-white/90 backdrop-blur-sm text-primary rounded-full hover:bg-white transition-all hover:scale-110 shadow-lg">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">{{ product.name }}
+              </h3>
+              <p class="text-gray-400 text-sm mb-4 line-clamp-2">{{ product.description }}</p>
+              <div class="flex items-center justify-between">
+                <div
+                  class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">
+                  ${{ product.price }}
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center">
+                    <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <span class="text-xs text-gray-400 ml-1">4.8</span>
+                  </div>
+                  <span class="text-xs text-gray-500">(24)</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Modal de productos -->
-  <app-menu-item-modal
-    *ngIf="isModalOpen"
-    [itemTitle]="selectedItemTitle"
-    [imageUrl]="selectedImageUrl"
-    [productId]="selectedProductId"
-    [price]="selectedPrice"
-    (close)="closeModal()"
-  ></app-menu-item-modal>
+  <app-menu-item-modal *ngIf="isModalOpen" [itemTitle]="selectedItemTitle" [imageUrl]="selectedImageUrl"
+    [productId]="selectedProductId" [price]="selectedPrice" (close)="closeModal()"></app-menu-item-modal>
 
   <!-- Modal de reseñas -->
-<app-menu-review-modal 
-  *ngIf="isReviewModalOpen"
-  [productId]="selectedProductIdForReview"
-  [productName]="selectedProductNameForReview"
-  [imageUrl]="selectedImageUrlForReview"
-  (close)="closeReviewModal()"
-></app-menu-review-modal>
-
+  <app-menu-review-modal *ngIf="isReviewModalOpen" [productId]="selectedProductIdForReview"
+    [productName]="selectedProductNameForReview" [imageUrl]="selectedImageUrlForReview"
+    (close)="closeReviewModal()"></app-menu-review-modal>
 
   <app-footer></app-footer>
 </div>

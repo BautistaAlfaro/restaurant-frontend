@@ -1,146 +1,214 @@
-<app-navbar></app-navbar>
+<div class="min-h-screen bg-gradient-to-b from-primary to-neutral-900 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+      <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+      </svg>
+      Mi Carrito
+    </h1>
 
-<div class="cart-container">
-  <div class="cart-header">
-    <h1>Mi Carrito</h1>
-
-
-  <!-- Error message display -->
-  <div class="error-message" *ngIf="errorMessage">
-    <div class="error-content">
-      <i class="fas fa-exclamation-circle"></i>
-      <span>{{ errorMessage }}</span>
-      <button class="close-error" (click)="errorMessage = ''">×</button>
-    </div>
-  </div>
-
-  <!-- Loading indicator -->
-  <div class="loading-indicator" *ngIf="isLoading">
-    <div class="spinner"></div>
-    <p>Cargando carrito...</p>
-  </div>
-
-  <div class="empty-cart-message" *ngIf="!isLoading && (cart.length === 0 || !cart[0]?.orders?.length)">
-    <div class="empty-cart-icon">
-      <i class="fas fa-shopping-cart"></i>
-    </div>
-    <h2>Tu carrito está vacío</h2>
-    <p>Agrega productos desde nuestro menú para comenzar tu pedido.</p>
-    <a routerLink="/menu" class="browse-menu-btn">Ver Menú</a>
-  </div>
-
-  <div class="cart-content" *ngIf="!isLoading && cart.length > 0 && cart[0]?.orders?.length">
-    <div class="cart-items">
-      <div class="cart-item" *ngFor="let order of cart[0].orders">
-        <div class="item-image">
-          <!-- Use a placeholder image if product image is not available -->
-          <img [src]="order.product?.imageUrl || '/assets/images/placeholder-food.jpg'" [alt]="order.product?.name || order.productName || 'Producto'">
-        </div>
-        <div class="item-details">
-          <h3 class="item-name">{{ order.product?.name || order.productName || 'Producto' }}</h3>
-          <p class="item-description" *ngIf="order.comment">{{ order.comment }}</p>
-          <div class="item-price">${{ getUnitPrice(order) | number:'1.2-2' }} c/u</div>
-          <div class="item-quantity">Cantidad: {{ order.quantity }}</div>
-        </div>
-        <div class="item-subtotal">${{ order.subtotal | number:'1.2-2' }}</div>
-        <button class="remove-btn" (click)="removeOrder(order, cart[0])" [disabled]="isUpdating">
-          <i class="fas fa-trash"></i>
-        </button>
-      </div>
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-20">
+      <div class="w-12 h-12 border-4 border-accent/30 border-t-accent rounded-full animate-spin mb-4"></div>
+      <p class="text-gray-400">Cargando tu pedido...</p>
     </div>
 
-    <div class="cart-summary">
-      <h2>Resumen del Pedido</h2>
-      <div class="summary-row">
-        <span>Subtotal ({{ cart[0].orders.length }} items):</span>
-        <span>${{ cart[0].total | number:'1.2-2' }}</span>
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-8 flex items-start gap-3">
+      <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <div class="flex-grow">
+        <p class="text-red-200">{{ errorMessage }}</p>
       </div>
-      <div class="summary-row">
-        <span>Impuestos (10%):</span>
-        <span>${{ cart[0].total * 0.1 | number:'1.2-2' }}</span>
-      </div>
-      <div class="summary-row total">
-        <span>Total:</span>
-        <span>${{ cart[0].total * 1.1 | number:'1.2-2' }}</span>
-      </div>
-      <div class="cart-actions">
-        <button class="checkout-btn" (click)="toggleCheckoutForm()" [disabled]="isUpdating">
-          {{ showCheckoutForm ? 'Cancelar' : 'Proceder al Pago' }}
-        </button>
-      </div>
+      <button (click)="errorMessage = ''" class="text-red-400 hover:text-red-300"><svg class="w-5 h-5" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg></button>
     </div>
 
-    <!-- Checkout Form -->
-    <div class="checkout-form" *ngIf="showCheckoutForm">
-      <h2>Información de Entrega y Pago</h2>
-      <div class="form-group">
-        <label>Tipo de Entrega</label>
-        <div class="radio-group">
-          <label>
-            <input type="radio" [(ngModel)]="deliveryType" value="delivery" name="deliveryType">
-            Delivery
-          </label>
-          <label>
-            <input type="radio" [(ngModel)]="deliveryType" value="pickup" name="deliveryType">
-            Recoger en Tienda
-          </label>
-        </div>
+    <!-- Empty Cart -->
+    <div *ngIf="!isLoading && (cart.length === 0 || !cart[0]?.orders?.length)"
+      class="text-center py-20 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl">
+      <div class="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+          </path>
+        </svg>
       </div>
+      <h2 class="text-2xl font-bold text-white mb-2">Tu carrito está vacío</h2>
+      <p class="text-gray-400 mb-8 max-w-md mx-auto">Explora nuestro menú y descubre los sabores exclusivos que tenemos
+        para ti.</p>
+      <a routerLink="/menu"
+        class="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-primary font-bold py-3 px-8 rounded-xl transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40 active:scale-95">
+        Ver Menú
+      </a>
+    </div>
 
-      <div class="form-group" *ngIf="deliveryType === 'delivery'">
-        <label for="deliveryAddress">Dirección de Entrega</label>
-        <textarea id="deliveryAddress" [(ngModel)]="deliveryAddress" rows="3" placeholder="Ingresa tu dirección completa"></textarea>
-      </div>
+    <!-- Cart Content -->
+    <div *ngIf="!isLoading && cart.length > 0 && cart[0]?.orders?.length" class="grid lg:grid-cols-3 gap-8">
 
-      <div class="form-group">
-        <label for="contactNumber">Número de Contacto</label>
-        <input type="tel" id="contactNumber" [(ngModel)]="contactNumber" placeholder="Ej: +56 9 1234 5678">
-      </div>
+      <!-- Cart Items List -->
+      <div class="lg:col-span-2 space-y-4">
+        <div *ngFor="let order of cart[0].orders"
+          class="group bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-4 flex gap-4 transition-all duration-300">
+          <!-- Image -->
+          <div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 bg-black/20">
+            <img [src]="order.product?.imageUrl || '/assets/images/placeholder-food.jpg'"
+              [alt]="order.product?.name || order.productName"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
 
-      <div class="form-group">
-        <label>Método de Pago</label>
-        <div class="radio-group">
-          <label>
-            <input type="radio" [(ngModel)]="paymentMethod" value="cash" name="paymentMethod">
-            Efectivo
-          </label>
-          <label>
-            <input type="radio" [(ngModel)]="paymentMethod" value="card" name="paymentMethod">
-            Tarjeta (al entregar)
-          </label>
-          <label>
-            <input type="radio" [(ngModel)]="paymentMethod" value="transfer" name="paymentMethod">
-            Transferencia
-          </label>
+          <!-- Details -->
+          <div class="flex-grow flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start">
+                <h3 class="text-lg font-bold text-white">{{ order.product?.name || order.productName || 'Producto' }}
+                </h3>
+                <p class="text-accent font-bold text-lg">${{ order.subtotal | number:'1.0-0' }}</p>
+              </div>
+              <p *ngIf="order.comment" class="text-sm text-gray-400 mt-1 italic">"{{ order.comment }}"</p>
+            </div>
+
+            <div class="flex justify-between items-end mt-2">
+              <div class="text-sm text-gray-400">
+                <span class="bg-black/30 px-2 py-1 rounded-lg">Cantidad: {{ order.quantity }}</span> x ${{
+                getUnitPrice(order) | number:'1.0-0' }}
+              </div>
+
+              <button (click)="removeOrder(order, cart[0])" [disabled]="isUpdating"
+                class="text-gray-500 hover:text-red-400 transition-colors p-2 hover:bg-red-500/10 rounded-full"
+                title="Eliminar producto">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                  </path>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="additionalInstructions">Instrucciones Adicionales</label>
-        <textarea id="additionalInstructions" [(ngModel)]="additionalInstructions" rows="3" placeholder="Instrucciones especiales para la entrega o preparación"></textarea>
+      <!-- Order Summary & Checkout -->
+      <div class="lg:col-span-1">
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 sticky top-24">
+          <h2 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4">Resumen del Pedido</h2>
+
+          <!-- Summary Lines -->
+          <div class="space-y-3 mb-6">
+            <div class="flex justify-between text-gray-400">
+              <span>Subtotal ({{ cart[0].orders.length }} items)</span>
+              <span>${{ cart[0].total | number:'1.0-0' }}</span>
+            </div>
+            <div class="flex justify-between text-gray-400">
+              <span>Impuestos (10%)</span>
+              <span>${{ cart[0].total * 0.1 | number:'1.0-0' }}</span>
+            </div>
+            <div class="flex justify-between text-white font-bold text-xl pt-4 border-t border-white/10">
+              <span>Total</span>
+              <span class="text-accent">${{ cart[0].total * 1.1 | number:'1.0-0' }}</span>
+            </div>
+          </div>
+
+          <!-- Checkout Form Toggle -->
+          <button (click)="toggleCheckoutForm()" [disabled]="isUpdating"
+            class="w-full bg-gradient-to-r from-accent to-accent-light text-primary font-bold py-4 rounded-xl shadow-lg shadow-accent/20 hover:shadow-accent/40 active:scale-[0.98] transition-all mb-4">
+            {{ showCheckoutForm ? 'Cancelar' : 'Proceder al Pago' }}
+          </button>
+
+          <!-- Checkout Form -->
+          <div *ngIf="showCheckoutForm" class="mt-6 space-y-4 animate-fade-in-down">
+
+            <!-- Delivery Type -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-300">Tipo de Entrega</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="cursor-pointer">
+                  <input type="radio" [(ngModel)]="deliveryType" value="delivery" name="deliveryType"
+                    class="peer sr-only">
+                  <div
+                    class="text-center py-2 rounded-lg bg-black/20 border border-white/10 text-gray-400 peer-checked:bg-accent/20 peer-checked:border-accent peer-checked:text-accent transition-all">
+                    Delivery</div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" [(ngModel)]="deliveryType" value="pickup" name="deliveryType"
+                    class="peer sr-only">
+                  <div
+                    class="text-center py-2 rounded-lg bg-black/20 border border-white/10 text-gray-400 peer-checked:bg-accent/20 peer-checked:border-accent peer-checked:text-accent transition-all">
+                    Retiro</div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div *ngIf="deliveryType === 'delivery'" class="space-y-2">
+              <label for="address" class="text-sm font-medium text-gray-300">Dirección</label>
+              <textarea id="address" [(ngModel)]="deliveryAddress" rows="2"
+                class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-white focus:border-accent outline-none transition-colors placeholder-gray-600"
+                placeholder="Ej: Av. Principal 123, Depto 4"></textarea>
+            </div>
+
+            <!-- Contact -->
+            <div class="space-y-2">
+              <label for="phone" class="text-sm font-medium text-gray-300">Teléfono</label>
+              <input type="tel" id="phone" [(ngModel)]="contactNumber"
+                class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-white focus:border-accent outline-none transition-colors placeholder-gray-600"
+                placeholder="+54 9 11 1234 5678">
+            </div>
+
+            <!-- Payment -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-300">Método de Pago</label>
+              <select [(ngModel)]="paymentMethod" name="paymentMethod"
+                class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-white focus:border-accent outline-none transition-colors">
+                <option value="cash">Efectivo</option>
+                <option value="card">Tarjeta (al recibir)</option>
+                <option value="transfer">Transferencia</option>
+              </select>
+            </div>
+
+            <!-- Additional Instructions -->
+            <div class="space-y-2">
+              <label for="notes" class="text-sm font-medium text-gray-300">Notas Adicionales</label>
+              <textarea id="notes" [(ngModel)]="additionalInstructions" rows="2"
+                class="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-white focus:border-accent outline-none transition-colors placeholder-gray-600"
+                placeholder="Sin mayonesa, timbre roto, etc."></textarea>
+            </div>
+
+            <button (click)="finalizarCompra(cart[0])" [disabled]="isProcessing"
+              class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl shadow-lg transition-all active:scale-[0.98] mt-4 flex items-center justify-center gap-2">
+              <div *ngIf="isProcessing"
+                class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              <span>{{ isProcessing ? 'Procesando...' : 'Confirmar Pedido' }}</span>
+            </button>
+
+          </div>
+        </div>
       </div>
 
-      <div class="form-actions">
-        <button class="cancel-btn" (click)="toggleCheckoutForm()">Cancelar</button>
-        <button class="submit-btn" [disabled]="isProcessing" (click)="finalizarCompra(cart[0])">
-          <span *ngIf="!isProcessing">Confirmar Pedido</span>
-          <span *ngIf="isProcessing"><i class="fas fa-spinner fa-spin"></i> Procesando...</span>
-        </button>
-      </div>
     </div>
   </div>
 </div>
 
-<div class="login-prompt" *ngIf="!isLoggedIn">
-  <div class="login-prompt-content">
-    <div class="login-icon">
-      <i class="fas fa-user-lock"></i>
+<!-- Login Prompt Wrapper -->
+<div *ngIf="!isLoggedIn" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+  <div class="bg-neutral-900 border border-white/10 rounded-3xl p-8 max-w-md w-full text-center shadow-2xl">
+    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+      <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+        </path>
+      </svg>
     </div>
-    <h2>Inicia sesión para ver tu carrito</h2>
-    <p>Necesitas iniciar sesión para ver y gestionar tu carrito de compras.</p>
-    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-    <button class="login-btn" (click)="goToLogin()">Iniciar Sesión</button>
+    <h2 class="text-2xl font-bold text-white mb-2">Acceso Requerido</h2>
+    <p class="text-gray-400 mb-8">Debes iniciar sesión para gestionar tu carrito y realizar pedidos.</p>
+    <button (click)="goToLogin()"
+      class="w-full bg-accent hover:bg-accent-hover text-primary font-bold py-3 rounded-xl transition-colors">
+      Iniciar Sesión
+    </button>
   </div>
 </div>
-
-<app-footer></app-footer>

@@ -1,189 +1,392 @@
-<div class="home-page">
-  <app-navbar></app-navbar>
+<app-navbar></app-navbar>
+<!-- Hero Section Premium -->
+<section
+  class="relative min-h-screen flex items-center bg-gradient-to-br from-primary via-primary to-neutral-900 overflow-hidden">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10"></div>
+  </div>
 
-  <!-- Hero Section Innovador -->
-  <section class="hero-section">
-    <div class="hero-background">
-      <div class="floating-shapes">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
-        <div class="floating-shape shape-5"></div>
-        <div class="floating-shape shape-6"></div>
-      </div>
-      <div class="gradient-overlay"></div>
-    </div>
-    
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-title">
-          <span class="title-line">Experiencia</span>
-          <span class="title-line highlight">Gastronómica</span>
-          <span class="title-line">Excepcional</span>
+  <!-- Animated Orbs -->
+  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/8 rounded-full blur-3xl animate-float"></div>
+    <div
+      class="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-r from-accent/5 to-accent-light/5 rounded-full blur-3xl animate-float"
+      style="animation-delay: 3s;"></div>
+    <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-accent/3 rounded-full blur-2xl animate-float"
+      style="animation-delay: 1.5s;"></div>
+  </div>
+
+  <div class="container relative z-10 grid lg:grid-cols-2 gap-16 items-center pt-24 pb-12">
+    <!-- Text Content -->
+    <div class="space-y-8 animate-slide-up">
+      <div class="space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="h-px bg-accent/30 w-12"></div>
+          <span class="text-accent text-sm font-medium tracking-widest uppercase">Étoile Restaurant</span>
+          <div class="h-px bg-accent/30 w-12"></div>
+        </div>
+
+        <h1 class="text-6xl md:text-8xl font-bold text-white leading-tight">
+          <span class="block">Cocina de</span>
+          <span
+            class="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-accent-light to-yellow-400">Autor</span>
+          <span class="block">y Pasión</span>
         </h1>
-        <p class="hero-subtitle">
-          Donde la tradición culinaria se encuentra con la innovación moderna. 
-          Descubre sabores únicos en un ambiente diseñado para crear momentos inolvidables.
+
+        <p class="text-gray-300 text-lg md:text-xl max-w-2xl leading-relaxed font-light">
+          Experimenta una fusión excepcional de sabores mediterráneos contemporáneos,
+          donde cada plato cuenta una historia y cada momento se convierte en un recuerdo inolvidable.
         </p>
-        <div class="hero-actions">
-          <a routerLink="/reserva" class="hero-button primary">
-            <i class="fas fa-calendar-check"></i>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a routerLink="/reserva"
+          class="group relative px-8 py-4 bg-gradient-to-r from-accent to-accent-light hover:from-accent-light hover:to-yellow-500 text-primary font-semibold rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(212,175,55,0.3)] overflow-hidden">
+          <span class="relative z-10 flex items-center justify-center gap-2">
             Reservar Mesa
-          </a>
-          <a routerLink="/carta" class="hero-button secondary">
-            <i class="fas fa-utensils"></i>
-            Ver Menú
-          </a>
-        </div>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </span>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-accent-light to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+        </a>
+        <a routerLink="/carta"
+          class="px-8 py-4 border border-white/20 hover:border-accent/50 text-white hover:text-accent rounded-xl transition-all duration-300 hover:bg-white/5 backdrop-blur-sm flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+            </path>
+          </svg>
+          Explorar Menú
+        </a>
       </div>
-      
-      <div class="hero-stats">
-        <div *ngFor="let stat of stats" class="stat-item">
-          <div class="stat-icon">
-            <i class="fas fa-{{stat.icon}}"></i>
-          </div>
-          <div class="stat-content">
-            <span class="stat-number">{{stat.number}}</span>
-            <span class="stat-label">{{stat.label}}</span>
-          </div>
+
+      <!-- Premium Stats -->
+      <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/10">
+        <div class="text-center">
+          <div
+            class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light mb-1">
+            15+</div>
+          <div class="text-sm text-gray-400 uppercase tracking-wider">Años Excelencia</div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light mb-1">
+            500+</div>
+          <div class="text-sm text-gray-400 uppercase tracking-wider">Reseñas 5★</div>
+        </div>
+        <div class="text-center">
+          <div
+            class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light mb-1">
+            50K</div>
+          <div class="text-sm text-gray-400 uppercase tracking-wider">Clientes Felices</div>
         </div>
       </div>
     </div>
-  </section>
 
-
-
-
-  <!-- Sección de Características -->
-  <section class="features-section">
-    <div class="container">
-      <h2 class="section-title">¿Por qué elegirnos?</h2>
-      <p class="section-subtitle">Descubre lo que hace especial a nuestro restaurante</p>
-      
-      <div class="features-grid">
-        <div *ngFor="let feature of features; let i = index" 
-             class="feature-card animate-on-scroll"
-             [style.animation-delay]="i * 0.1 + 's'">
-          <div class="feature-icon" [ngClass]="'bg-gradient-to-r ' + feature.color">
-            <i class="fas fa-{{feature.icon}}"></i>
+    <!-- Hero Visual Side -->
+    <div class="hidden lg:block relative animate-fade-in" style="animation-delay: 0.3s;">
+      <div class="relative">
+        <!-- Premium Image Placeholder -->
+        <div
+          class="w-full h-[600px] rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 backdrop-blur-sm border border-white/10 shadow-2xl overflow-hidden">
+          <div
+            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop')] bg-cover bg-center opacity-60">
           </div>
-          <h3 class="feature-title">{{feature.title}}</h3>
-          <p class="feature-description">{{feature.description}}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
 
+          <!-- Floating Badge -->
+          <div
+            class="absolute top-8 right-8 bg-accent text-primary px-4 py-2 rounded-full font-semibold text-sm shadow-lg animate-pulse">
+            Michelin ⭐ 2024
+          </div>
 
-  <!-- Sección de Testimonios -->
-  <section class="testimonials-section">
-    <div class="container">
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      <p class="section-subtitle">Experiencias de quienes nos han visitado</p>
-      
-      <div class="testimonials-grid">
-        <div *ngFor="let testimonial of testimonials; let i = index" 
-             class="testimonial-card animate-on-scroll"
-             [style.animation-delay]="i * 0.1 + 's'">
-          <div class="testimonial-content">
-            <div class="quote-icon">
-              <i class="fas fa-quote-left"></i>
+          <!-- Review Card -->
+          <div class="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-2xl">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="flex items-center gap-1">
+                <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg>
+                <span class="font-semibold text-gray-900">4.9</span>
+              </div>
+              <span class="text-gray-600 text-sm">(324 reseñas)</span>
             </div>
-            <p class="testimonial-text">{{testimonial.comment}}</p>
-            <div class="testimonial-rating">
-              <span *ngFor="let star of generateRatingArray(testimonial.rating)" class="star">
-                <i class="fas fa-star"></i>
-              </span>
-            </div>
-          </div>
-          <div class="testimonial-author">
-            <img [src]="testimonial.image" [alt]="testimonial.name" class="author-image">
-            <div class="author-info">
-              <h4 class="author-name">{{testimonial.name}}</h4>
-              <p class="author-role">{{testimonial.role}}</p>
-            </div>
+            <p class="text-gray-800 text-sm italic">"Una experiencia gastronómica excepcional que deleita todos los
+              sentidos."</p>
+            <p class="text-gray-600 text-xs mt-2 font-medium">- María G., Critic Gourmet</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Sección de Información y Horarios -->
-  <section class="info-section">
-    <div class="container">
-      <div class="info-grid">
-        <div class="info-card hours-card animate-on-scroll">
-          <div class="card-header">
-            <i class="fas fa-clock"></i>
-            <h3 class="info-title">Horarios de Atención</h3>
-          </div>
-          <ul class="hours-list">
-            <li *ngFor="let schedule of businessHours" class="hours-item">
-              <span class="day">{{schedule.day}}</span>
-              <span class="hours">{{schedule.hours}}</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="info-card location-card animate-on-scroll">
-          <div class="card-header">
-            <i class="fas fa-map-marker-alt"></i>
-            <h3 class="info-title">Ubicación</h3>
-          </div>
-          <p class="location-address">
-            Zeballos 1341, Rosario, Santa Fe
-          </p>
-          <div class="location-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.433645537123!2d-60.651668!3d-32.952967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab2ec59b89ab%3A0x282d4e38f9f3c9e9!2sZeballos%201341%2C%20S2000%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1720973200000!5m2!1ses-419!2sar"
-            width="100%"
-           height="250"
-            style="border:0; border-radius: 12px;"
-            allowfullscreen=""
-            loading="lazy"
-           referrerpolicy="no-referrer-when-downgrade"
-         ></iframe>
-          </div>
 
+
+
+<!-- Sección de Características -->
+<!-- Sección de Experiencia Única -->
+<section class="py-24 bg-gradient-to-b from-neutral-900 to-primary relative">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-20">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="h-px bg-accent/30 w-20"></div>
+        <span class="text-accent text-sm font-medium tracking-widest uppercase">Nuestra Diferencia</span>
+        <div class="h-px bg-accent/30 w-20"></div>
+      </div>
+      <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">Una Experiencia <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">Única</span></h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Descubre por qué Étoile es el destino gastronómico preferido de
+        los paladares más exigentes</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div *ngFor="let feature of features; let i = index"
+        class="group relative p-8 rounded-2xl bg-gradient-to-br from-white/[0.02] to-white/[0.05] border border-white/5 hover:border-accent/20 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+        <!-- Background Effect -->
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         </div>
-        
-        <div class="info-card contact-card animate-on-scroll">
-          <div class="card-header">
-            <i class="fas fa-phone"></i>
-            <h3 class="info-title">Contacto</h3>
+
+        <!-- Content -->
+        <div class="relative z-10">
+          <div
+            class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/20 flex items-center justify-center text-3xl mb-6 text-accent group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-black/50 backdrop-blur-sm">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                [attr.d]="getFeaturePath(feature.icon)"></path>
+            </svg>
           </div>
-          <ul class="contact-list">
-            <li class="contact-item">
-              <i class="fas fa-phone"></i>
-              <span>+54 11 1234-5678</span>
-            </li>
-            <li class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>restaurantdsw&#64;gmail.com</span>
-            </li>
-            <li class="contact-item">
-              <i class="fas fa-globe"></i>
-              <span>www.restaurantdsw.com</span>
-            </li>
-          </ul>
-          <div class="social-links">
-            <a href="#" class="social-link">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="#" class="social-link">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-link">
-              <i class="fab fa-twitter"></i>
-            </a>
+          <h3 class="text-2xl font-bold text-white mb-4">{{feature.title}}</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">{{feature.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Testimonios Premium -->
+<section class="py-24 bg-black relative">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_rgba(212,175,55,0.05),_transparent_50%)]"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-20">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="h-px bg-accent/30 w-20"></div>
+        <span class="text-accent text-sm font-medium tracking-widest uppercase">Testimonios</span>
+        <div class="h-px bg-accent/30 w-20"></div>
+      </div>
+      <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">Experiencias <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">Memorables</span></h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Las voces de nuestros clientes distinguidos comparten sus
+        momentos inolvidables en Étoile</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let testimonial of testimonials; let i = index"
+        class="group relative p-8 rounded-2xl bg-gradient-to-br from-white/[0.02] to-white/[0.05] border border-white/5 hover:border-accent/20 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+
+        <!-- Quote Icon -->
+        <div class="absolute top-6 right-6 text-accent/20">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+        </div>
+
+        <!-- Rating -->
+        <div class="flex items-center gap-1 mb-6">
+          <svg *ngFor="let star of generateRatingArray(testimonial.rating)" class="w-5 h-5 text-accent"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        </div>
+
+        <!-- Testimonial -->
+        <p class="text-gray-300 mb-8 leading-relaxed text-lg font-light italic">"{{testimonial.comment}}"</p>
+
+        <!-- Author -->
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <img [src]="testimonial.image" [alt]="testimonial.name"
+              class="w-14 h-14 rounded-full object-cover ring-2 ring-accent/20">
+            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-primary"></div>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold text-base">{{testimonial.name}}</h4>
+            <p class="text-accent/70 text-sm uppercase tracking-wider">{{testimonial.role}}</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  
+<!-- Sección de Información Premium -->
+<section class="py-24 bg-gradient-to-b from-black to-neutral-900 relative">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-20">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="h-px bg-accent/30 w-20"></div>
+        <span class="text-accent text-sm font-medium tracking-widest uppercase">Visítanos</span>
+        <div class="h-px bg-accent/30 w-20"></div>
+      </div>
+      <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">Tu <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">Reserva</span> te Espera
+      </h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Descubre nuestra ubicación exclusiva y los horarios perfectos
+        para tu visita</p>
+    </div>
 
-  <app-footer></app-footer>
-</div>
+    <div class="grid lg:grid-cols-3 gap-8">
+
+      <!-- Horarios Premium -->
+      <div
+        class="group relative bg-gradient-to-br from-white/[0.02] to-white/[0.05] rounded-3xl p-8 border border-white/5 hover:border-accent/20 transition-all duration-500 hover:-translate-y-2">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/20 flex items-center justify-center">
+              <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Horarios</h3>
+          </div>
+
+          <div class="space-y-4">
+            <div *ngFor="let schedule of businessHours"
+              class="flex justify-between items-center py-3 px-4 rounded-xl bg-white/2 hover:bg-white/5 transition-all">
+              <span class="text-gray-300 font-medium">{{schedule.day}}</span>
+              <span class="text-accent font-semibold">{{schedule.hours}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ubicación Premium -->
+      <div
+        class="group relative bg-gradient-to-br from-white/[0.02] to-white/[0.05] rounded-3xl p-8 border border-white/5 hover:border-accent/20 transition-all duration-500 hover:-translate-y-2">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/20 flex items-center justify-center">
+              <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Ubicación</h3>
+          </div>
+
+          <div class="space-y-4">
+            <div class="p-4 rounded-xl bg-white/2">
+              <p class="text-accent font-semibold mb-1">Dirección Exclusiva</p>
+              <p class="text-gray-300 text-lg">Zeballos 1341, Rosario, Santa Fe</p>
+            </div>
+
+            <div class="h-48 rounded-2xl overflow-hidden border border-white/10">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.433645537123!2d-60.651668!3d-32.952967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab2ec59b89ab%3A0x282d4e38f9f3c9e9!2sZeballos%201341%2C%20S2000%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1720973200000!5m2!1ses-419!2sar"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contacto Premium -->
+      <div
+        class="group relative bg-gradient-to-br from-white/[0.02] to-white/[0.05] rounded-3xl p-8 border border-white/5 hover:border-accent/20 transition-all duration-500 hover:-translate-y-2">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/20 flex items-center justify-center">
+              <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Contacto</h3>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div
+              class="flex items-center gap-4 p-4 rounded-xl bg-white/2 hover:bg-white/5 transition-all cursor-pointer">
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                </path>
+              </svg>
+              <span class="text-gray-300">+54 11 1234-5678</span>
+            </div>
+
+            <div
+              class="flex items-center gap-4 p-4 rounded-xl bg-white/2 hover:bg-white/5 transition-all cursor-pointer">
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                </path>
+              </svg>
+              <span class="text-gray-300">contacto&#64;etoile-restaurant.com</span>
+            </div>
+          </div>
+
+          <div class="flex gap-3 justify-center">
+            <a href="#"
+              class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-accent hover:text-primary transition-all hover:scale-110">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-accent hover:text-primary transition-all hover:scale-110">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-accent hover:text-primary transition-all hover:scale-110">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<app-footer></app-footer>

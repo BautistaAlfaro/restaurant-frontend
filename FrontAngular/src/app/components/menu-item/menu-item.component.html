@@ -1,57 +1,53 @@
-<div class="menu-item-card">
-  <!-- Imagen y overlay para ver detalles -->
-  <div class="item-image-container" (click)="onItemClick()">
-    <img 
-      [src]="imageUrl || '/assets/images/placeholder-food.jpg'" 
-      [alt]="title" 
-      class="item-image"
-    />
-    <div class="item-overlay">
-      <div class="overlay-content">
-        <i class="fas fa-eye"></i>
-        <div>Ver Detalles</div>
-      </div>
+<div
+  class="group relative bg-neutral-900 border border-white/5 rounded-xl overflow-hidden shadow-lg shadow-black/50 transition-all duration-300 hover:shadow-accent/10 hover:border-accent/30 h-full flex flex-col">
+  <!-- Imagen -->
+  <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" (click)="onItemClick()">
+    <img [src]="imageUrl || '/assets/images/placeholder-food.jpg'" [alt]="title"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+    <div
+      class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+      <span
+        class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-medium border border-white/20">
+        Ver Detalles
+      </span>
+    </div>
+
+    <!-- Badge -->
+    <div *ngIf="featured"
+      class="absolute top-3 left-3 px-2 py-1 bg-accent text-primary text-xs font-bold uppercase tracking-wider rounded shadow-lg">
+      <i class="fas fa-star mr-1"></i> Destacado
     </div>
   </div>
 
-  <!-- Badge de producto destacado -->
-  <div *ngIf="featured" class="item-badge">
-    <i class="fas fa-star"></i> Destacado
-  </div>
+  <!-- Contenido -->
+  <div class="p-4 flex flex-col flex-grow">
+    <div class="flex justify-between items-start mb-2">
+      <h3 class="text-lg font-bold text-white leading-tight pr-2 group-hover:text-accent transition-colors">{{ title }}
+      </h3>
+      <span class="text-lg font-bold text-accent whitespace-nowrap" *ngIf="price !== undefined">${{ price }}</span>
+    </div>
 
-  <!-- Contenido del producto -->
-  <div class="item-content">
-    <h3 class="item-title">{{ title }}</h3>
-    <p class="item-description" *ngIf="description">{{ description }}</p>
+    <p class="text-gray-400 text-sm mb-4 line-clamp-2 flex-grow" *ngIf="description">{{ description }}</p>
 
-    <!-- Rating con estrellas -->
-    <div class="rating" (click)="abrirModal(productId); $event.stopPropagation()">
+    <!-- Rating -->
+    <div class="flex items-center gap-1 mb-4 cursor-pointer" (click)="abrirModal(productId); $event.stopPropagation()">
       <ng-container *ngFor="let star of [1,2,3,4,5]">
-        <i 
-          class="fa" 
-          [class.fa-star]="averageRating >= star" 
-          [class.fa-star-o]="averageRating < star"
-        ></i>
+        <i class="fas fa-star text-xs" [ngClass]="averageRating >= star ? 'text-accent' : 'text-gray-700'"></i>
       </ng-container>
+      <span class="text-xs text-gray-500 ml-2 hover:text-white transition-colors"
+        (click)="verResenas.emit(); $event.stopPropagation()">
+        (Opiniones)
+      </span>
     </div>
 
-  <!-- Botón para ver reseñas -->
-  <div class="button-container">
-    <span class="reviews-link" (click)="verResenas.emit()">Opiniones</span>
-  </div>
-
-
-    <!-- Pie: Precio y botón agregar al carrito -->
-    <div class="item-footer">
-      <div class="item-price" *ngIf="price !== undefined">${{ price }}</div>
-      <button 
-        class="quick-add-btn" 
-        (click)="onAddToCartClick($event)" 
-        [class.loading]="isAddingToCart"
-      >
-        <i *ngIf="!isAddingToCart" class="fas fa-plus"></i>
-        <i *ngIf="isAddingToCart" class="fas fa-spinner fa-spin"></i>
-      </button>
-    </div>
+    <!-- Acciones -->
+    <button
+      class="w-full py-2 bg-white/5 hover:bg-accent hover:text-primary text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 border border-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
+      (click)="onAddToCartClick($event)" [disabled]="isAddingToCart">
+      <i *ngIf="!isAddingToCart" class="fas fa-plus"></i>
+      <i *ngIf="isAddingToCart" class="fas fa-spinner fa-spin"></i>
+      <span *ngIf="!isAddingToCart">Agregar</span>
+      <span *ngIf="isAddingToCart">Agregando...</span>
+    </button>
   </div>
 </div>

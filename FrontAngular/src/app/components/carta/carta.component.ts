@@ -245,6 +245,20 @@ export class CartaComponent implements OnInit {
     return icons[category] || "utensils"
   }
 
+  // Método para obtener rutas SVG según la categoría
+  getCategoryPath(category: string): string {
+    const categoryPaths: { [key: string]: string } = {
+      'Entradas': 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+      'Platos Principales': 'M3 2v7c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V2M7 2v10m6 0v7c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V2M17 2v10',
+      'Postres': 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+      'Bebidas': 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+      'Pizzas': 'M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4.764 2.382a1 1 0 00.894 0l4.764-2.382a1 1 0 00.553-.894V9.236a1 1 0 00-.553-.894l-4.764-2.382a1 1 0 00-.894 0z',
+      'Pastas': 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
+      'Ensaladas': 'M13 10V3L4 14h7v7l9-11h-7z'
+    }
+    return categoryPaths[category] || categoryPaths['Platos Principales']
+  }
+
   // Método para obtener el delay de animación
   getAnimationDelay(index: number): string {
     return `${index * 0.05}s`

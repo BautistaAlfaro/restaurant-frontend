@@ -1,202 +1,192 @@
-<div class="auth-page">
+<div class="min-h-screen bg-gradient-to-b from-primary to-neutral-900 flex flex-col">
   <app-navbar></app-navbar>
 
-  <!-- Hero Section con diseño moderno -->
-  <section class="auth-hero">
-    <div class="hero-background">
-      <div class="floating-shapes">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
-      </div>
-      <div class="gradient-overlay"></div>
+  <div class="flex-grow flex items-center justify-center relative p-6 mt-20">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float"></div>
+      <div
+        class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-r from-accent/5 to-accent-light/5 rounded-full blur-3xl animate-float"
+        style="animation-delay: 2s;"></div>
     </div>
-    
-    <div class="auth-container">
-      <div class="auth-content">
-        <!-- Lado izquierdo - Información del restaurante -->
-        <div class="auth-info">
-          <div class="restaurant-branding">
-            <div class="brand-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
-                <path d="M7 2v20"></path>
-                <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
-              </svg>
-            </div>
-            <h1 class="brand-name">Restaurant DSW</h1>
-            <p class="brand-tagline">Experiencia gastronómica excepcional</p>
+
+    <!-- Login Container -->
+    <div class="w-full max-w-5xl grid lg:grid-cols-2 gap-8 z-10">
+
+      <!-- Left Side: Brand/Info (Hidden on mobile) -->
+      <div
+        class="hidden lg:flex flex-col justify-center relative rounded-3xl overflow-hidden p-12 bg-gradient-to-br from-white/5 to-white/10 border border-white/5 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop')] bg-cover bg-center opacity-30">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent"></div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="h-px bg-accent/50 w-12"></div>
+            <span class="text-accent tracking-widest uppercase text-sm font-semibold">Bienvenido a Étoile</span>
           </div>
-          
-          <div class="auth-features">
-            <div class="feature-item">
-              <div class="feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-              </div>
-              <div class="feature-content">
-                <h3>Reservas Online</h3>
-                <p>Reserva tu mesa de forma rápida y sencilla</p>
-              </div>
+
+          <h1 class="text-5xl font-bold text-white mb-6 leading-tight">
+            El Arte de la <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">Excelencia</span>
+            Culinaria
+          </h1>
+
+          <p class="text-gray-300 text-lg leading-relaxed mb-8">
+            Accede a una experiencia gastronómica sin precedentes. Gestiona tus reservas y descubre sabores únicos.
+          </p>
+
+          <div class="flex gap-4">
+            <div class="flex -space-x-4">
+              <img class="w-10 h-10 rounded-full border-2 border-primary object-cover"
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64"
+                alt="User" />
+              <img class="w-10 h-10 rounded-full border-2 border-primary object-cover"
+                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64"
+                alt="User" />
+              <img class="w-10 h-10 rounded-full border-2 border-primary object-cover"
+                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=64&h=64"
+                alt="User" />
+              <div
+                class="w-10 h-10 rounded-full border-2 border-primary bg-accent/20 flex items-center justify-center text-xs text-accent font-bold">
+                +2k</div>
             </div>
-            
-            <div class="feature-item">
-              <div class="feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path>
-                  <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path>
-                  <path d="M12 3v6"></path>
-                </svg>
-              </div>
-              <div class="feature-content">
-                <h3>Menú Exclusivo</h3>
-                <p>Descubre nuestras especialidades culinarias</p>
-              </div>
-            </div>
-            
-            <div class="feature-item">
-              <div class="feature-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                </svg>
-              </div>
-              <div class="feature-content">
-                <h3>Experiencia Premium</h3>
-                <p>Servicio de calidad y atención personalizada</p>
-              </div>
-            </div>
+            <p class="text-sm text-gray-400 flex items-center">Miembros distinguidos</p>
           </div>
         </div>
+      </div>
 
-        <!-- Lado derecho - Formulario de login -->
-        <div class="auth-form-section">
-          <div class="form-container">
-            <div class="form-header">
-              <h2>Bienvenido de vuelta</h2>
-              <p>Ingresa tus credenciales para continuar</p>
+      <!-- Right Side: Login Form -->
+      <div
+        class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden group hover:border-accent/20 transition-all duration-500">
+        <div
+          class="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2">
+        </div>
+
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-white mb-2">Iniciar Sesión</h2>
+          <p class="text-gray-400">Ingresa tus credenciales para acceder a tu cuenta.</p>
+        </div>
+
+        <form (ngSubmit)="login()" class="space-y-6">
+
+          <!-- Email Input -->
+          <div class="space-y-2">
+            <label for="username" class="text-sm font-medium text-gray-300 ml-1">Email</label>
+            <div class="relative group/input">
+              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-500 group-focus-within/input:text-accent transition-colors duration-300"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
+                  </path>
+                </svg>
+              </div>
+              <input type="email" id="username" [(ngModel)]="user" name="username"
+                class="w-full bg-black/20 border border-white/10 text-white rounded-xl py-3.5 pl-11 pr-4 focus:ring-0 focus:border-accent focus:bg-white/5 transition-all outline-none placeholder-gray-600"
+                [class.border-red-500_50]="!feedback" (input)="clearError()" placeholder="ejemplo&#64;email.com"
+                required>
             </div>
+          </div>
 
-            <form class="auth-form" (ngSubmit)="login()">
-              <!-- Campo Email/Usuario -->
-              <div class="form-group">
-                <label for="username" class="form-label">Email</label>
-                <div class="input-wrapper">
-                  <div class="input-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                  </div>
-                  <input 
-                    type="email" 
-                    id="username" 
-                    [(ngModel)]="user" 
-                    name="username"
-                    placeholder="tu@email.com"
-                    class="form-input"
-                    [class.error]="!feedback"
-                    (input)="clearError()"
-                    required
-                  >
-                </div>
+          <!-- Password Input -->
+          <div class="space-y-2">
+            <label for="password" class="text-sm font-medium text-gray-300 ml-1">Contraseña</label>
+            <div class="relative group/input">
+              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-500 group-focus-within/input:text-accent transition-colors duration-300"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                  </path>
+                </svg>
               </div>
+              <input [type]="showPassword ? 'text' : 'password'" id="password" [(ngModel)]="password" name="password"
+                class="w-full bg-black/20 border border-white/10 text-white rounded-xl py-3.5 pl-11 pr-12 focus:ring-0 focus:border-accent focus:bg-white/5 transition-all outline-none placeholder-gray-600"
+                [class.border-red-500_50]="!feedback" (input)="clearError()" placeholder="••••••••" required>
 
-              <!-- Campo Contraseña -->
-              <div class="form-group">
-                <label for="password" class="form-label">Contraseña</label>
-                <div class="input-wrapper">
-                  <div class="input-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                  </div>
-                  <input 
-                    [type]="showPassword ? 'text' : 'password'" 
-                    id="password" 
-                    [(ngModel)]="password" 
-                    name="password"
-                    placeholder="Ingresa tu contraseña"
-                    class="form-input"
-                    [class.error]="!feedback"
-                    (input)="clearError()"
-                    required
-                  >
-                  <button 
-                    type="button" 
-                    class="password-toggle"
-                    (click)="togglePasswordVisibility()"
-                  >
-                    <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                      <line x1="1" y1="1" x2="23" y2="23"></line>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Mensaje de error -->
-              <div class="error-message" *ngIf="!feedback">
-                <div class="error-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                  </svg>
-                </div>
-                <span>{{ errorMessage }}</span>
-              </div>
-
-              <!-- Opciones adicionales -->
-              <div class="form-options">
-                <div class="remember-option">
-                  <input type="checkbox" id="remember" class="checkbox-input">
-                  <label for="remember" class="checkbox-label">Recordarme</label>
-                </div>
-
-              </div>
-
-              <!-- Botón de login -->
-              <button 
-                type="submit"
-                class="auth-button primary" 
-                [disabled]="isLoading"
-              >
-                <span *ngIf="!isLoading" class="button-content">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                    <polyline points="10,17 15,12 10,7"></polyline>
-                    <line x1="15" y1="12" x2="3" y2="12"></line>
-                  </svg>
-                  Iniciar Sesión
-                </span>
-                <div class="loading-spinner" *ngIf="isLoading">
-                  <div class="spinner"></div>
-                  <span>Iniciando sesión...</span>
-                </div>
+              <button type="button"
+                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-500 hover:text-white transition-colors cursor-pointer"
+                (click)="togglePasswordVisibility()">
+                <svg *ngIf="!showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                  </path>
+                </svg>
+                <svg *ngIf="showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21">
+                  </path>
+                </svg>
               </button>
-
-              <!-- Link de registro -->
-              <div class="auth-switch">
-                <p>¿No tienes una cuenta? 
-                  <a routerLink="/register" class="switch-link">Regístrate aquí</a>
-                </p>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
+
+          <!-- Error Message -->
+          <div *ngIf="!feedback"
+            class="bg-red-500/10 border border-red-500/20 rounded-xl p-4 flex items-start gap-3 animate-fade-in-down">
+            <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-sm text-red-200">{{ errorMessage }}</p>
+          </div>
+
+          <!-- Options -->
+          <div class="flex items-center justify-between text-sm">
+            <label class="flex items-center gap-2 cursor-pointer group">
+              <input type="checkbox"
+                class="w-4 h-4 rounded bg-white/10 border-white/20 text-accent focus:ring-accent/50 transition-colors">
+              <span class="text-gray-400 group-hover:text-white transition-colors">Recordarme</span>
+            </label>
+            <a href="#" class="text-accent hover:text-accent-light transition-colors font-medium">¿Olvidaste tu
+              clave?</a>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-4 pt-2">
+            <button type="submit" [disabled]="isLoading"
+              class="w-full relative overflow-hidden bg-gradient-to-r from-accent to-accent-light text-primary font-bold py-4 rounded-xl shadow-lg shadow-accent/20 hover:shadow-accent/40 active:scale-[0.98] transition-all duration-300 group disabled:opacity-70 disabled:cursor-not-allowed">
+              <span *ngIf="!isLoading" class="relative z-10 flex items-center justify-center gap-2">
+                Ingresar
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                  </path>
+                </svg>
+              </span>
+              <div *ngIf="isLoading" class="flex items-center justify-center gap-2">
+                <div class="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                <span>Iniciando sesión...</span>
+              </div>
+              <!-- Hover effect overlay -->
+              <div
+                class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 skew-x-12">
+              </div>
+            </button>
+
+            <div class="text-center">
+              <span class="text-gray-500">¿Aún no eres miembro?</span>
+              <a routerLink="/register"
+                class="ml-2 text-white hover:text-accent font-semibold transition-colors inline-flex items-center gap-1 group">
+                Regístrate
+                <svg
+                  class="w-4 h-4 text-accent opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                  </path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </form>
       </div>
     </div>
-  </section>
-
+  </div>
   <app-footer></app-footer>
 </div>
